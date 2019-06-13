@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/taichi-ishitani/ruport-wiki-table-formatter.svg?branch=master)](https://travis-ci.org/taichi-ishitani/ruport-wiki-table-formatter)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f3b59dc0ae2f3d912ffc/maintainability)](https://codeclimate.com/github/taichi-ishitani/ruport-wiki-table-formatter/maintainability)
+[![codecov](https://codecov.io/gh/taichi-ishitani/ruport-wiki-table-formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/taichi-ishitani/ruport-wiki-table-formatter)
+
 # Ruport::WikiTableFormatter
 
 Ruport::WikiTableFormatter is an extention for [Ruport](https://github.com/ruport/ruport) to format `Ruport::Table` data into wiki table format.
