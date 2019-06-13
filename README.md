@@ -33,7 +33,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/taichi
 Copyrigh (c) 2019 Taichi Ishitani.
 
 Licensed under the [MIT License](https://opensource.org/licenses/MIT), see [LICENSE.txt](LICENSE.txt) for further details.
-
-## Code of Conduct
-
-Everyone interacting in the Ruport::Wiki::Table::Formatter project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/ruport-wiki-table-formatter/blob/master/CODE_OF_CONDUCT.md).
