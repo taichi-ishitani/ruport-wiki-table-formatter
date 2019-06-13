@@ -1,14 +1,14 @@
 # Ruport::WikiTableFormatter
 
-This gem allows you to format `Ruport::Table` data into table format of wiki.
+Ruport::WikiTableFormatter is an extention for [Ruport](https://github.com/ruport/ruport) to format `Ruport::Table` data into wiki table format.
 
-Currently, following wiki fomrats are supported:
+Currently, Ruport::WikiTableFormatter supports following wiki formats:
 
 * Markdown
 
 ## Installation
 
-Install via rubygems:
+To install Ruport::WikiTableFormatter, hit command below:
 
 ```
 $ gem install ruport-wiki-table-formatter
@@ -22,7 +22,34 @@ gem 'ruport-wiki-table-formatter'
 
 ## Usage
 
-TODO: Write usage instructions here
+To format `Ruport::Table` data into wiki table format, you only have to call following methods:
+
+* Markdown: #to_markdown
+
+Here is an sample code:
+
+```ruby
+require 'ruport'
+require 'ruport/wiki_table_formatter'
+
+table = Ruport.Table('Airport', 'IATA code', 'Opend')
+table << ['Kansai'     , 'KIX', 1994]
+table << ['Haneda'     , 'HND', 1931]
+table << ['Narita'     , 'NRT', 1978]
+table << ['New Chitose', 'CTS', 1988]
+
+md = table.to_markdown
+File.binwrite('sample.md', md)
+```
+
+Execute above sample code, Markdown table format below will be output:
+
+|Airport|IATA code|Opend|
+|:--|:--|:--|
+|Kansai|KIX|1994|
+|Haneda|HND|1931|
+|Narita|NRT|1978|
+|New Chitose|CTS|1988|
 
 ## Contributing
 
