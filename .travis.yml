@@ -27,6 +27,6 @@ rvm:
 before_install:
   - gem install bundler
 
-stript:
+script:
   - bundle exec rake coverage
 
