@@ -2,13 +2,23 @@
 
 module Ruport
   module WikiTableFormatter
+    # This class produces Markdown table output from Ruport::Table data.
+    #
+    # === Rendering Options
+    # <tt>:alignment:</tt> Default alignment for all columns.
+    # Allowed values are :left, :center and :right. Default is :left.
+    #
+    # <tt>:column_alignments:</tt> Alignments for specific columns.
+    # You can configure alignments by using Hash (key: column name, value: alignment)
     class Markdown < Ruport::Formatter
       renders :markdown, for: [Controller::Table]
 
+      # Hook for setting available options using a template.
       def apply_template
         apply_table_format_template(template.table)
       end
 
+      # Checks to ensure the table has non empty column_names.
       def prepare_table
         if data.column_names.empty?
           message = 'Can\'t output table without column names.'
@@ -16,11 +26,16 @@ module Ruport
         end
       end
 
+      # Uses the column names from the given Data::Table to generate a table header.
       def build_table_header
         build_md_row(output, data.column_names)
         build_md_row(output, alignment_strings(data.column_names))
       end
 
+      # Generates body of Markdown table data.
+      # Following characters will be replaced as escape.
+      # | -> &#124;
+      # newline code(\n) -> <br>
       def build_table_body
         data.each { |row| build_md_row(output, row) }
       end
