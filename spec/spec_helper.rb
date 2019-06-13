@@ -1,5 +1,4 @@
 require 'bundler/setup'
-require 'ruport/wiki_table_formatter'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -12,3 +11,15 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start
+
+  if ENV['CODECOV_TOKEN']
+    require 'codecov'
+    SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  end
+end
+
+require 'ruport/wiki_table_formatter'

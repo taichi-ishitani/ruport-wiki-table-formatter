@@ -18,7 +18,7 @@ end
 
 desc 'Run all RSpec examples and collect coverage'
 task :coverage do
-  ENV['COVERAGE'] = true
+  ENV['COVERAGE'] = 'yes'
   Rake::Task['spec'].execute
 end
 
