@@ -14,6 +14,11 @@ module Ruport
     class Markdown < Ruport::Formatter
       renders :markdown, for: [Controller::Table]
 
+      # Hook for setting available options using a template.
+      def apply_template
+        apply_table_format_template(template.table)
+      end
+
       # Uses the column names from the given Data::Table to generate
       # a table header.
       # If no column names are given, first row will be
