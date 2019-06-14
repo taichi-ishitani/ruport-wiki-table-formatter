@@ -37,6 +37,30 @@ RSpec.describe Ruport::WikiTableFormatter::Markdown do
     MD
   end
 
+  context 'when column_names is not given' do
+    it 'should treat first row as table header' do
+      md = Ruport::Controller::Table.render_markdown do |r|
+        r.data = Ruport::Table(data: [[:foo, :bar], [1, 2], [3, 4]])
+      end
+      expect(md).to eq <<~'MD'
+        |foo|bar|
+        |:--|:--|
+        |1|2|
+        |3|4|
+      MD
+
+      md = Ruport::Controller::Table.render_markdown do |r|
+        r.data = Ruport::Table([], data: [[:foo, :bar], [1, 2], [3, 4]])
+      end
+      expect(md).to eq <<~'MD'
+        |foo|bar|
+        |:--|:--|
+        |1|2|
+        |3|4|
+      MD
+    end
+  end
+
   describe 'options' do
     describe 'alignment option' do
       it 'should specify alignment for all columns' do
@@ -109,18 +133,6 @@ RSpec.describe Ruport::WikiTableFormatter::Markdown do
         |1|2|3|
         |4|5|6|
       MD
-    end
-  end
-
-  describe 'error check' do
-    context 'when table hss no column names' do
-      it 'should raise FormatterError' do
-        expect {
-          Ruport::Controller::Table.render_markdown do |r|
-            r.data = Ruport::Table([], data: [[1, 2, 3], [4, 5, 6]])
-          end
-        }.to raise_error Ruport::FormatterError, "Can't output table without column names."
-      end
     end
   end
 end

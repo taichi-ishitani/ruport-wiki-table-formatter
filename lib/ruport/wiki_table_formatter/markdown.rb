@@ -9,38 +9,45 @@ module Ruport
     # Allowed values are :left, :center and :right. Default is :left.
     #
     # <tt>:column_alignments:</tt> Alignments for specific columns.
-    # You can configure alignments by using Hash (key: column name, value: alignment)
+    # You can configure alignments by using
+    # Hash (key: column name, value: alignment)
     class Markdown < Ruport::Formatter
       renders :markdown, for: [Controller::Table]
 
-      # Hook for setting available options using a template.
-      def apply_template
-        apply_table_format_template(template.table)
-      end
-
-      # Checks to ensure the table has non empty column_names.
-      def prepare_table
-        if data.column_names.empty?
-          message = 'Can\'t output table without column names.'
-          raise Ruport::FormatterError.new(message)
-        end
-      end
-
-      # Uses the column names from the given Data::Table to generate a table header.
+      # Uses the column names from the given Data::Table to generate
+      # a table header.
+      # If no column names are given, first row will be
+      # treated as table header.
       def build_table_header
-        build_md_row(output, data.column_names)
-        build_md_row(output, alignment_strings(data.column_names))
+        names = column_names(data)
+        build_md_row(output, names)
+        build_md_row(output, alignment_strings(names))
       end
 
       # Generates body of Markdown table data.
       # Following characters will be replaced as escape.
-      # | -> &#124;
-      # newline code(\n) -> <br>
+      #
+      # * | -> &#124;
+      # * newline code(\\n) -> \<br>
       def build_table_body
-        data.each { |row| build_md_row(output, row) }
+        body =
+          if data.column_names && !data.column_names.empty?
+            data
+          else
+            data[1..-1]
+          end
+        body.each { |row| build_md_row(output, row) }
       end
 
       private
+
+      def column_names(data)
+        if data.column_names && !data.column_names.empty?
+          data.column_names
+        else
+          data[0]
+        end
+      end
 
       def build_md_row(output, row)
         output << '|'
