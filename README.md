@@ -1,5 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/ruport-wiki-table-formatter.svg)](https://badge.fury.io/rb/ruport-wiki-table-formatter)
-[![Build Status](https://travis-ci.org/taichi-ishitani/ruport-wiki-table-formatter.svg?branch=master)](https://travis-ci.org/taichi-ishitani/ruport-wiki-table-formatter)
+[![Build Status](https://travis-ci.com/taichi-ishitani/ruport-wiki-table-formatter.svg?branch=master)](https://travis-ci.com/taichi-ishitani/ruport-wiki-table-formatter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f3b59dc0ae2f3d912ffc/maintainability)](https://codeclimate.com/github/taichi-ishitani/ruport-wiki-table-formatter/maintainability)
 [![codecov](https://codecov.io/gh/taichi-ishitani/ruport-wiki-table-formatter/branch/master/graph/badge.svg)](https://codecov.io/gh/taichi-ishitani/ruport-wiki-table-formatter)
 
